@@ -119,8 +119,4 @@ cd sales-and-inventory-management
 </details>
 
 
-## Authors
-
-- [Stephen Murichu](https://github.com/munuhee)
-
                                             Happy coding! 🚀
