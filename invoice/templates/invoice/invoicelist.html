@@ -1,0 +1,135 @@
+{% extends "store/base.html" %}
+{% load render_table from django_tables2 %}
+{% load querystring from django_tables2 %}
+{% load static %}
+
+{% block title %}Invoices{% endblock title %}
+
+{% block content %}
+<div class="container-fluid py-5">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold text-gradient mb-0">Invoices</h2>
+      <p class="text-muted small mb-0">View, manage, and export all invoice records</p>
+    </div>
+    <div>
+      <a class="btn btn-gradient rounded-pill shadow-sm me-2" href="{% url 'invoice-create' %}">
+        <i class="fa-solid fa-plus me-2"></i> Create Invoice
+      </a>
+      <a class="btn btn-outline-primary rounded-pill shadow-sm" href="{% querystring '_export'='xlsx' %}">
+        <i class="fa-solid fa-download me-2"></i> Export to Excel
+      </a>
+    </div>
+  </div>
+
+  <!-- Table Card -->
+  <div class="card border-0 shadow-lg soft-card rounded-4">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-striped align-middle mb-0 modern-table">
+          <thead class="text-white" style="background: linear-gradient(90deg, #0ea5e9, #dedede);">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Customer</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Item</th>
+              <th scope="col">Price/Item</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total</th>
+              <th scope="col">Shipping</th>
+              <th scope="col">Grand Total</th>
+              <th scope="col" class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for invoice in invoices %}
+            <tr>
+              <td>{{ invoice.id }}</td>
+              <td><a href="{% url 'invoice-detail' invoice.slug %}" class="text-decoration-none fw-semibold text-primary">{{ invoice.customer_name }}</a></td>
+              <td>{{ invoice.contact_number }}</td>
+              <td>{{ invoice.item.name }}</td>
+              <td>{{ invoice.price_per_item }}</td>
+              <td>{{ invoice.quantity }}</td>
+              <td>{{ invoice.total }}</td>
+              <td>{{ invoice.shipping }}</td>
+              <td class="fw-semibold text-success">{{ invoice.grand_total }}</td>
+              <td class="text-center">
+                <div class="btn-group">
+                  <a class="btn btn-light btn-sm rounded-pill shadow-sm" href="{% url 'invoice-update' invoice.slug %}">
+                    Update<i class="fa-solid fa-pen text-success"></i>
+                  </a>
+                  <a class="btn btn-light btn-sm rounded-pill shadow-sm" href="{% url 'invoice-delete' invoice.pk %}">
+                    Delete<i class="fa-solid fa-trash text-danger"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="10" class="text-center py-5 text-muted">
+                <i class="fa fa-file-invoice fa-2x mb-3"></i>
+                <p class="mb-0">No invoices found</p>
+                <small class="text-secondary">You can add one using the button above.</small>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  {% if is_paginated %}
+  <nav class="mt-4" aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+      <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+      {% endif %}
+
+      {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+      <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+      {% else %}
+      <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+      {% else %}
+      <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% endif %}
+</div>
+
+<style>
+  .text-gradient {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .soft-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+  }
+  .btn-gradient {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    color: #fff;
+    border: none;
+    transition: all 0.3s ease;
+  }
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(99, 102, 241, 0.35);
+  }
+  .modern-table tbody tr:hover {
+    background-color: rgba(99, 102, 241, 0.05);
+  }
+</style>
+{% endblock content %}

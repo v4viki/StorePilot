@@ -1,0 +1,120 @@
+{% extends "store/base.html" %}
+
+{% block title %}Customers{% endblock title %}
+
+{% block content %}
+<div class="container-fluid py-5">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+    <div>
+      <h2 class="fw-bold text-gradient mb-0">Customer Management</h2>
+      <p class="text-muted small mb-0">View, manage, and reward your loyal customers</p>
+    </div>
+    <a href="{% url 'customer_create' %}" class="btn btn-gradient rounded-pill px-4 shadow-sm">
+      <i class="fa fa-plus me-2"></i> Add New Customer
+    </a>
+  </div>
+
+  <!-- Table -->
+  <div class="card shadow-lg border-0 soft-card rounded-4">
+    <div class="card-body p-0">
+      {% if customers %}
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 modern-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Address</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Loyalty Points</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for customer in customers %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ customer.first_name }}</td>
+              <td>{{ customer.last_name }}</td>
+              <td>{{ customer.address }}</td>
+              <td>{{ customer.email }}</td>
+              <td>{{ customer.phone }}</td>
+              <td>
+                <span class="badge bg-success bg-opacity-10 text-success fw-semibold px-3 py-2 rounded-pill">
+                  {{ customer.loyalty_points }}
+                </span>
+              </td>
+              <td class="text-center">
+                <div class="btn-group" role="group">
+                  <a href="{% url 'customer_update' customer.pk %}" class="btn btn-light btn-sm rounded-pill shadow-sm">
+                    Update<i class="fa fa-edit text-primary"></i>
+                  </a>
+                  <a href="{% url 'customer_delete' customer.pk %}" class="btn btn-light btn-sm rounded-pill shadow-sm">
+                    Delete<i class="fa fa-trash text-danger"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="text-center py-5 text-muted">
+        <i class="fa fa-users fa-3x mb-3"></i>
+        <h5>No customers found</h5>
+        <p class="small">You can add a new customer using the button above.</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Styles -->
+<style>
+  .text-gradient {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .btn-gradient {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    border: none;
+    color: #fff;
+    transition: all .3s ease;
+    font-weight: 500;
+    box-shadow: 0 4px 14px rgba(14,165,233,0.3);
+  }
+
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99,102,241,0.35);
+  }
+
+  .soft-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+  }
+
+  .modern-table thead {
+    background: linear-gradient(90deg, #0ea5e9, #ffffff);
+    color: white;
+  }
+
+  .modern-table tbody tr:hover {
+    background-color: rgba(99, 102, 241, 0.05);
+  }
+
+  .modern-table th,
+  .modern-table td {
+    padding: 1rem 1.25rem;
+    vertical-align: middle;
+  }
+</style>
+{% endblock content %}

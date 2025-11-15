@@ -1,0 +1,147 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% block title %}Purchases{% endblock title %}
+
+{% block content %}
+<div class="container-fluid py-5">
+
+  <!-- Page Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold text-gradient mb-0">Purchases</h2>
+      <p class="text-muted small mb-0">View and manage purchase orders</p>
+    </div>
+    <a href="{% url 'purchasecreate' %}" class="btn btn-gradient rounded-pill px-4 shadow-sm">
+      <i class="fa fa-plus me-2"></i> Add Purchase
+    </a>
+  </div>
+
+  <!-- Purchases Table -->
+  <div class="card border-0 shadow-lg soft-card rounded-4">
+    <div class="card-body p-0">
+
+      {% if purchases %}
+      <div class="table-responsive">
+        <table class="table align-middle modern-table mb-0">
+
+          <thead class="table-header text-white">
+            <tr>
+              <th>#</th>
+              <th>Vendor</th>
+              <th>Total Amount</th>
+              <th>Order Date</th>
+              <th>Status</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for purchase in purchases %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+
+              <td class="fw-semibold">
+                {{ purchase.vendor.name }}
+              </td>
+
+              <td>
+                <span class="fw-semibold">₹{{ purchase.total_value }}</span>
+              </td>
+
+              <td>{{ purchase.order_date|date:"M d, Y" }}</td>
+
+              <td>
+                <span class="badge px-3 py-2 rounded-pill
+                  {% if purchase.delivery_status == 'S' %}
+                    bg-success bg-opacity-75
+                  {% else %}
+                    bg-warning text-dark
+                  {% endif %}
+                ">
+                  {{ purchase.get_delivery_status_display }}
+                </span>
+              </td>
+
+              <td class="text-center">
+                <div class="btn-group">
+
+                  <!-- Update button -->
+                  <a href="{% url 'purchaseupdate' purchase.id %}"
+                     class="btn btn-light btn-sm rounded-pill shadow-sm me-2">
+                    <i class="fa fa-edit text-success me-1"></i>
+                    Update
+                  </a>
+
+                  <!-- Delete button -->
+                  <a href="{% url 'purchasedelete' purchase.id %}"
+                     class="btn btn-light btn-sm rounded-pill shadow-sm">
+                    <i class="fa fa-trash text-danger me-1"></i>
+                    Delete
+                  </a>
+
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+      </div>
+
+      {% else %}
+      <div class="text-center py-5 text-muted">
+        <i class="fa fa-box-open fa-3x mb-3"></i>
+        <h5>No purchases found</h5>
+        <p class="small">Click "Add Purchase" to create your first entry.</p>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+<!-- Styles -->
+<style>
+  .text-gradient {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .btn-gradient {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    border: none;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s ease;
+  }
+
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+  }
+
+  .soft-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+  }
+
+  .table-header {
+    background: linear-gradient(90deg, #0ea5e9, #d9d9e2);
+  }
+
+  .modern-table tbody tr {
+    transition: 0.25s ease;
+  }
+
+  .modern-table tbody tr:hover {
+    background: rgba(99, 102, 241, 0.06);
+  }
+
+  .modern-table td, .modern-table th {
+    padding: 1rem 1.25rem;
+    vertical-align: middle;
+  }
+</style>
+
+{% endblock content %}

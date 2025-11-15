@@ -1,0 +1,69 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Update Invoice{% endblock title %}
+
+{% block content %}
+<div class="container-fluid py-5">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold text-gradient mb-0">Update Invoice</h2>
+      <p class="text-muted small mb-0">Modify invoice details and save the updated information</p>
+    </div>
+    <a href="{% url 'invoicelist' %}" class="btn btn-outline-primary rounded-pill shadow-sm px-4">
+      <i class="fa fa-arrow-left me-2"></i> Back
+    </a>
+  </div>
+
+  <!-- Form -->
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg border-0 rounded-4 soft-card p-4">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.media }}
+
+          <fieldset class="form-group">
+            <header class="mb-4 text-center">
+              <h3 class="fw-semibold text-gradient mb-2">Invoice Information</h3>
+              <hr class="w-50 mx-auto">
+            </header>
+
+            {{ form|crispy }}
+          </fieldset>
+
+          <div class="text-center mt-4">
+            <button class="btn btn-gradient rounded-pill px-5 shadow-sm" type="submit">
+              <i class="fa fa-save me-2"></i> Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .text-gradient {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .soft-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+  }
+  .btn-gradient {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    border: none;
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+  }
+</style>
+{% endblock content %}

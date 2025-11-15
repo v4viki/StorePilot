@@ -1,0 +1,73 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Delivery{% endblock title %}
+
+{% block content %}
+<div class="container-fluid py-5">
+  <!-- Page Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold text-gradient mb-0">Create Delivery</h2>
+      <p class="text-muted small mb-0">Add a new delivery record to the system</p>
+    </div>
+    <a href="{% url 'deliveries' %}" class="btn btn-outline-primary rounded-pill shadow-sm px-4">
+      <i class="fa fa-arrow-left me-2"></i> Back to Deliveries
+    </a>
+  </div>
+
+  <!-- Form Card -->
+  <div class="card shadow-lg border-0 rounded-4 soft-card">
+    <div class="card-body px-4 py-5">
+      <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <div class="text-end mt-4">
+          <button type="submit" class="btn btn-gradient rounded-pill px-4 py-2 shadow-sm">
+            <i class="fa fa-save me-2"></i> Save Delivery
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  .text-gradient {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .btn-gradient {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    border: none;
+    color: #fff;
+    transition: all .3s ease;
+    font-weight: 500;
+    box-shadow: 0 4px 14px rgba(14,165,233,0.3);
+  }
+
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99,102,241,0.35);
+  }
+
+  .soft-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+  }
+
+  .form-control {
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+
+  .form-label {
+    font-weight: 500;
+  }
+</style>
+{% endblock content %}

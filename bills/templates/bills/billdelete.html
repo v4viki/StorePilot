@@ -1,0 +1,51 @@
+{% extends "store/base.html" %}
+{% block title %}Confirm delete{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-5 d-flex justify-content-center">
+  <div class="card shadow-lg border-0 rounded-4 soft-card p-4" style="max-width: 640px; width: 100%;">
+    <form method="POST">
+      {% csrf_token %}
+
+      <div class="text-center mb-4">
+        <i class="fa fa-file-invoice text-danger fa-2x mb-2"></i>
+        <h3 class="fw-bold text-gradient mb-2">Delete Invoice</h3>
+        <p class="text-muted mb-0">
+          Are you sure you want to delete the invoice
+          <strong>"{{ object.slug }}"</strong>?
+        </p>
+      </div>
+
+      <div class="d-flex justify-content-center gap-3">
+        <!-- solid danger so color always shows -->
+        <button type="submit" class="btn btn-danger rounded-pill px-4 shadow-sm">
+          Yes, Delete
+        </button>
+        <!-- outline secondary (less likely to be overridden than outline-success) -->
+        <a href="{% url 'invoicelist' %}" class="btn btn-outline-secondary rounded-pill px-4">
+          Cancel
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+  .text-gradient{
+    background: linear-gradient(90deg,#0ea5e9,#6366f1);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .soft-card{
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(10px);
+  }
+  /* Safety overrides in case a custom stylesheet muted outline buttons */
+  .btn-outline-secondary{ border-color:#6c757d !important; color:#6c757d !important; }
+  .btn-outline-secondary:hover{ background:#6c757d !important; color:#fff !important; }
+
+  /* If you really want outline success instead, uncomment these:
+  .btn-outline-success{ border-color:#198754 !important; color:#198754 !important; }
+  .btn-outline-success:hover{ background:#198754 !important; color:#fff !important; }
+  */
+</style>
+{% endblock content %}

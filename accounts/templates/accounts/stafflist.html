@@ -1,0 +1,123 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% load render_table from django_tables2 %}
+{% load querystring from django_tables2 %}
+
+{% block title %}Staff{% endblock title %}
+
+{% block content %}
+<div class="container-fluid py-5">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold text-gradient mb-0">Staff</h2>
+      <p class="text-muted small mb-0">Manage team members, roles, and status</p>
+    </div>
+    <div class="d-flex gap-2">
+      <a class="btn btn-gradient rounded-pill shadow-sm" href="{% url 'profile-create' %}">
+        <i class="fa-solid fa-user-plus me-2"></i> Add Staff
+      </a>
+      <a class="btn btn-outline-primary rounded-pill shadow-sm" href="{% querystring '_export'='xlsx' %}">
+        <i class="fa-solid fa-download me-2"></i> Export to Excel
+      </a>
+    </div>
+  </div>
+
+  <!-- Table Card -->
+  <div class="card border-0 shadow-lg soft-card rounded-4">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table align-middle modern-table mb-0">
+          <thead class="text-white" style="background: linear-gradient(90deg, #0ea5e9, #fbfbfb);">
+            <tr>
+              <th scope="col">Id <i class="fa-solid fa-sort ms-1 opacity-75"></i></th>
+              <th scope="col">Profile Image</th>
+              <th scope="col">Username <i class="fa-solid fa-sort ms-1 opacity-75"></i></th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Status <i class="fa-solid fa-sort ms-1 opacity-75"></i></th>
+              <th scope="col">Role <i class="fa-solid fa-sort ms-1 opacity-75"></i></th>
+              {% if user.profile.role == 'AD' or user.profile.role == 'EX' %}
+              <th scope="col" class="text-center">Action</th>
+              {% endif %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for profile in profiles %}
+            <tr>
+              <th scope="row">{{ profile.id }}</th>
+              <td>
+                <img alt="Profile Image" src="{{ profile.profile_picture.url }}" class="avatar rounded-circle" style="width:38px;height:38px;object-fit:cover;">
+              </td>
+              <td class="fw-semibold">{{ profile.user.username }}</td>
+              <td>{{ profile.telephone }}</td>
+              <td>
+                {% if profile.status == 'A' %}
+                  <span class="badge bg-success bg-opacity-75 rounded-pill px-3 py-2">Active</span>
+                {% elif profile.status == 'OL' %}
+                  <span class="badge bg-warning bg-opacity-75 rounded-pill px-3 py-2 text-dark">On Leave</span>
+                {% else %}
+                  <span class="badge bg-danger bg-opacity-75 rounded-pill px-3 py-2">Inactive</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if profile.role == 'AD' %} Admin
+                {% elif profile.role == 'EX' %} Executive
+                {% else %} Operative
+                {% endif %}
+              </td>
+
+              {% if user.profile.role == 'AD' or user.profile.role == 'EX' %}
+              <td class="text-center">
+                <div class="d-inline-flex gap-2">
+                  <a class="btn btn-light btn-sm rounded-pill shadow-sm" href="{% url 'profile-update' profile.id %}">
+                    <i class="fa-solid fa-pen text-success"></i>
+                  </a>
+                  {% if user.profile.role == 'AD' %}
+                  <a class="btn btn-light btn-sm rounded-pill shadow-sm" href="{% url 'profile-delete' profile.id %}">
+                    <i class="fa-solid fa-trash text-danger"></i>
+                  </a>
+                  {% endif %}
+                </div>
+              </td>
+              {% endif %}
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="7" class="text-center py-5 text-muted">
+                <i class="fa fa-users fa-2x mb-2"></i>
+                <div>No staff found. Add a new member using the button above.</div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .text-gradient{
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .soft-card{
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+  }
+  .btn-gradient{
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    border: none; color: #fff;
+    transition: all .3s ease;
+  }
+  .btn-gradient:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(99,102,241,.35);
+  }
+  .modern-table tbody tr:hover{
+    background-color: rgba(99,102,241,.05);
+  }
+  .table td, .table th { text-align: center; vertical-align: middle; }
+</style>
+{% endblock %}

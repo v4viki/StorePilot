@@ -1,0 +1,78 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Update Product{% endblock title %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-7">
+      <div class="card shadow-lg border-0 soft-card p-4">
+        <div class="card-body">
+          <div class="text-center mb-4">
+            <img src="{% static 'images/logo/favicon.png' %}" width="55" alt="Logo" class="mb-2 opacity-75">
+            <h3 class="fw-bold text-gradient mb-1">Update Product</h3>
+            <p class="text-muted small">Edit and update the product details below</p>
+          </div>
+
+          <form method="POST" enctype="multipart/form-data" class="needs-validation">
+            {% csrf_token %}
+            {{ form.media }}
+            <fieldset class="form-group mb-4">
+              {{ form|crispy }}
+            </fieldset>
+
+            <div class="d-flex justify-content-center gap-3 mt-4">
+              <a href="{% url 'productslist' %}" class="btn btn-light border rounded-pill px-4 shadow-sm">
+                <i class="fa fa-arrow-left me-2"></i> Cancel
+              </a>
+              <button type="submit" class="btn btn-gradient rounded-pill px-5 shadow-sm">
+                <i class="fa fa-sync-alt me-2"></i> Update Product
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* --- Text + Button Gradient --- */
+  .text-gradient {
+    background: linear-gradient(90deg, #3b82f6, #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .btn-gradient {
+    background: linear-gradient(90deg, #3b82f6, #10b981);
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(59,130,246,0.25);
+  }
+
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(16,185,129,0.35);
+  }
+
+  /* --- Card Style --- */
+  .soft-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+  }
+
+  input, select, textarea {
+    border-radius: 10px !important;
+  }
+
+  .card {
+    border-radius: 18px;
+  }
+</style>
+{% endblock content %}

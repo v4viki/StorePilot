@@ -1,0 +1,157 @@
+{% load static %}
+
+<aside id="sidebar" class="sidebar bg-glass text-light d-flex flex-column justify-content-between position-fixed top-0 start-0 h-100">
+  <!-- Brand / Header -->
+  <div class="sidebar-header text-center py-4 border-bottom border-light-subtle">
+    <a href="{% url 'dashboard' %}" class="text-decoration-none d-flex align-items-center justify-content-center">
+      <img src="{% static 'images/logo/favicon.png' %}" alt="Logo" class="me-2" width="36" height="36" />
+      <h5 class="fw-semibold mb-0 text-light">Store<span class="text-warning">Pilot</span></h5>
+    </a>
+  </div>
+
+  <!-- Navigation -->
+  <div class="sidebar-nav flex-grow-1 overflow-auto mt-2">
+    <ul class="nav flex-column px-3">
+      <li class="nav-item">
+        <a href="{% url 'dashboard' %}" class="nav-link py-2 px-3 d-flex align-items-center {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+          <i class="fa fa-chart-line me-3"></i> Dashboard
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'productslist' %}" class="nav-link py-2 px-3 d-flex align-items-center {% if request.resolver_match.url_name == 'productslist' %}active{% endif %}">
+          <i class="fa fa-box me-3"></i> Products
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'saleslist' %}" class="nav-link py-2 px-3 d-flex align-items-center {% if request.resolver_match.url_name == 'saleslist' %}active{% endif %}">
+          <i class="fa fa-shopping-cart me-3"></i> Sales
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'purchaseslist' %}" class="nav-link py-2 px-3 d-flex align-items-center {% if request.resolver_match.url_name == 'purchaseslist' %}active{% endif %}">
+          <i class="fa fa-truck-loading me-3"></i> Purchases
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'deliveries' %}" class="nav-link py-2 px-3 d-flex align-items-center {% if request.resolver_match.url_name == 'deliveries' %}active{% endif %}">
+          <i class="fa fa-shipping-fast me-3"></i> Deliveries
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'invoicelist' %}" class="nav-link py-2 px-3 d-flex align-items-center {% if request.resolver_match.url_name == 'invoicelist' %}active{% endif %}">
+          <i class="fa fa-receipt me-3"></i> Invoices
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'bill_list' %}" class="nav-link py-2 px-3 d-flex align-items-center {% if request.resolver_match.url_name == 'bill_list' %}active{% endif %}">
+          <i class="fa fa-file-invoice-dollar me-3"></i> Bills
+        </a>
+      </li>
+
+      <li class="nav-item mt-2">
+        <span class="small text-muted text-uppercase ms-3">Accounts</span>
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'profile_list' %}" class="nav-link py-2 px-3 d-flex align-items-center {% if request.resolver_match.url_name == 'profile_list' %}active{% endif %}">
+          <i class="fa fa-user-tie me-3"></i> Staff
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'customer_list' %}" class="nav-link py-2 px-3 d-flex align-items-center {% if request.resolver_match.url_name == 'customer_list' %}active{% endif %}">
+          <i class="fa fa-user-friends me-3"></i> Customers
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'vendor-list' %}" class="nav-link py-2 px-3 d-flex align-items-center {% if request.resolver_match.url_name == 'vendor-list' %}active{% endif %}">
+          <i class="fa fa-industry me-3"></i> Vendors
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <div class="sidebar-footer py-3 border-top border-light-subtle text-center">
+    <form method="post" action="{% url 'user-logout' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger btn-sm px-4 rounded-pill">
+        <i class="fa fa-sign-out-alt me-2"></i> Logout
+      </button>
+    </form>
+  </div>
+</aside>
+
+<style>
+  /* Sidebar Layout */
+  .sidebar {
+    width: 250px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+
+  /* Sidebar Links */
+  .sidebar .nav-link {
+    color: #d1d5db;
+    font-weight: 500;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    transition: all 0.25s ease;
+  }
+
+  .sidebar .nav-link:hover {
+    background: linear-gradient(90deg, rgba(14,165,233,0.15), rgba(99,102,241,0.15));
+    color: #fff;
+    transform: translateX(4px);
+  }
+
+  .sidebar .nav-link.active {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(14,165,233,0.3);
+  }
+
+  .sidebar-header img {
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+  }
+
+  /* Scrollbar styling */
+  .sidebar-nav::-webkit-scrollbar {
+    width: 6px;
+  }
+  .sidebar-nav::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.15);
+    border-radius: 3px;
+  }
+
+  /* Responsive collapse */
+  @media (max-width: 991px) {
+    .sidebar {
+      left: -250px;
+    }
+    .sidebar.active {
+      left: 0;
+    }
+  }
+</style>
+
+<script>
+  // Optional: Toggle sidebar visibility on small screens
+  const sidebar = document.getElementById('sidebar');
+  document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+  });
+</script>

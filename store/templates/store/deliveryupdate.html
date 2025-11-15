@@ -1,0 +1,81 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Update Delivery{% endblock title %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+      <div class="card border-0 shadow-lg rounded-4 soft-card p-4">
+        <div class="card-body">
+
+          <!-- Header -->
+          <div class="text-center mb-4">
+            <img src="{% static 'images/logo/favicon.png' %}" width="50" alt="Logo" class="mb-2">
+            <h3 class="fw-semibold text-gradient mb-1">Update Delivery</h3>
+            <p class="text-muted small">Modify this delivery record</p>
+          </div>
+
+          <!-- Form -->
+          <form method="POST" class="needs-validation">
+            {% csrf_token %}
+            {{ form.media }}
+            <fieldset class="form-group mb-4">
+              {{ form|crispy }}
+            </fieldset>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-center gap-3 mt-4">
+              <a href="{% url 'deliveries' %}" class="btn btn-light border rounded-pill px-4 shadow-sm">
+                <i class="fa fa-arrow-left me-2"></i> Cancel
+              </a>
+
+              <button type="submit" class="btn btn-gradient rounded-pill px-5 shadow-sm">
+                <i class="fa fa-save me-2"></i> Update
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .text-gradient {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .btn-gradient {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    border: none;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 14px rgba(14,165,233,0.3);
+  }
+
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99,102,241,0.35);
+  }
+
+  .soft-card {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+  }
+
+  input, select, textarea {
+    border-radius: 10px !important;
+  }
+</style>
+{% endblock content %}

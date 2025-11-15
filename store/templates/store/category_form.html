@@ -1,0 +1,57 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add / Edit Category{% endblock title %}
+
+{% block content %}
+<div class="container-fluid py-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold text-gradient mb-0">Category Form</h2>
+      <p class="text-muted small mb-0">Create or update a product category</p>
+    </div>
+    <a href="{% url 'category-list' %}" class="btn btn-outline-primary rounded-pill shadow-sm px-4">
+      <i class="fa fa-arrow-left me-2"></i> Back to Categories
+    </a>
+  </div>
+
+  <div class="card border-0 shadow-lg rounded-4 soft-card p-4">
+    <div class="card-body">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="text-end mt-4">
+          <button type="submit" class="btn btn-gradient rounded-pill px-4 py-2 shadow-sm">
+            <i class="fa fa-save me-2"></i> Save Category
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  .text-gradient {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .btn-gradient {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    color: white;
+    border: none;
+    transition: 0.3s;
+    font-weight: 500;
+    box-shadow: 0 4px 14px rgba(14,165,233,0.3);
+  }
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99,102,241,0.35);
+  }
+  .soft-card {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+  }
+</style>
+{% endblock content %}

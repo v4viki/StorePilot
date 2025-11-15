@@ -1,0 +1,46 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Product Details{% endblock title %}
+
+{% block content %}
+<div class="container-fluid py-5">
+  <div class="card shadow-lg border-0 rounded-4 soft-card p-4">
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold text-gradient">{{ product.name }}</h2>
+        <a href="{% url 'productslist' %}" class="btn btn-outline-primary rounded-pill px-4">
+          <i class="fa fa-arrow-left me-2"></i> Back
+        </a>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4 text-center">
+          <img src="{{ product.image.url }}" class="img-fluid rounded-4 shadow-sm" alt="{{ product.name }}">
+        </div>
+        <div class="col-md-8">
+          <h5 class="fw-semibold mb-2">Category:</h5>
+          <p class="text-muted">{{ product.category }}</p>
+          <h5 class="fw-semibold mb-2">Price:</h5>
+          <p class="text-success fw-bold">${{ product.price }}</p>
+          <h5 class="fw-semibold mb-2">Stock:</h5>
+          <p class="text-muted">{{ product.quantity }}</p>
+          <h5 class="fw-semibold mb-2">Description:</h5>
+          <p class="text-muted">{{ product.description|default:"No description provided." }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .text-gradient {
+    background: linear-gradient(90deg, #0ea5e9, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .soft-card {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+  }
+</style>
+{% endblock content %}
