@@ -134,12 +134,13 @@ Place your screenshots inside /Assets/ folder.
 </details>
 🛠️ Tech Stack
 Component	Technology
-Backend	Django 5, Python 3.11+
+Backend	    Django 5, Python 3.11+
 Frontend	Bootstrap 5, HTML, JavaScript, AJAX
 Database	MySQL (Production), SQLite (Dev)
 Containerization	Docker, Docker-Compose
 Exporting	OpenPyXL
 Auth	Django Authentication
+
 📦 Project Structure
 sales-inventory-management/
 │── accounts/
@@ -235,14 +236,6 @@ docker build -t storepilot:prod .
 Run with Gunicorn
 gunicorn StorePilot.wsgi:application --bind 0.0.0.0:8000
 
-Setup NGINX reverse proxy
-Enable HTTPS using Certbot
-👨‍💻 Author
-
-Aman Yadav
-📧 your email here
-🐙 GitHub: https://github.com/
-<your-username>
 
 📄 License
 
