@@ -3,7 +3,6 @@ StorePilot – Sales & Inventory Management System (Django + MySQL + Docker)
 A powerful, modern, full-stack Sales & Inventory Management System built with Django, Bootstrap 5, AJAX, and MySQL.
 Designed for small and medium businesses to manage products, sales, purchases, invoices, staff, and customers through a clean and intuitive UI.
 
-<div align="center"> <img src="https://res.cloudinary.com/murste/image/upload/v1698907632/stevolve_x8ioeu.png" width="120" /> </div>
 📌 Table of Contents
 
 📌 Description
