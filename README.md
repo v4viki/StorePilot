@@ -7,33 +7,22 @@ Designed for small and medium businesses to manage products, sales, purchases, i
 📌 Table of Contents
 
 📌 Description
-
 ✨ Features
-
 🖼️ Screenshots
-
 🛠️ Tech Stack
-
 📦 Project Structure
 
 🚀 Installation Guide
-
 🔧 1. Clone Repository
-
 🐳 2. Run With Docker
-
 💻 3. Run Without Docker
 
 🐬 MySQL Configuration
-
 📤 Deployment
-
 👨‍💻 Author
-
 📄 License
 
 📌 Description
-
 StorePilot is a complete business management system featuring:
 
 ✔ Inventory Management
@@ -51,76 +40,66 @@ Perfect for retail, wholesale, warehouse, and SMB operations.
 🛒 Sales Management
 
 AJAX-based item addition
-
 Auto tax, subtotal, grand total & change calculation
-
 Stock auto-deduct on sale
-
 Sale detail view
-
 Export sales to Excel
 
 📦 Inventory Management
-
 Add/Update/Delete products
-
 Auto stock adjustments
-
 Category-wise listing
 
 🚚 Purchases & Vendors
 
 Record purchases
-
 Auto-increase stock
-
 Vendor list
-
 Purchase detail page
+Sales detail
+Customers detail
 
 👥 Users
-
 Customer list
-
 Staff management
 
 Django authentication system
-
 🧾 Invoices & Bills
-
 Generate invoices
-
 Printable invoice layout
-
 View bills
 
 🎨 UI & UX
-
 Bootstrap 5
-
 Modern gradient theme
-
 Smooth animations
-
 Responsive tables
 
 🧰 Misc
-
 OpenPyXL export
-
 Docker & Docker Compose support
-
 MySQL ready
-
 AJAX endpoints
 
 🖼️ Screenshots
 
-Place your screenshots inside /Assets/ folder.
+<details>
+  <summary>Click to view screenshots</summary>
 
-<details> <summary>Click to view screenshots</summary>
+  ![Dashboard](Assets/dashboard.png)
+
+  ![Product](Assets/Product.png)
+
+  ![Sales](Assets/Sales.png)
+
+  ![Invoice](Assets/invoice.png)
+
+  ![Print Invoice](Assets/print-invoice.png)
+
+  ![Staff Management](Assets/staff-manage.png)
 
 </details>
+
 🛠️ Tech Stack
 Component	Technology
 Backend	Django 5, Python 3.11+
