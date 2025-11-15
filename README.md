@@ -1,122 +1,253 @@
+🚀 StorePilot – Sales & Inventory Management System (Django + MySQL + Docker)
 
-<div align="center">
-  <img src="https://res.cloudinary.com/murste/image/upload/v1698907632/stevolve_x8ioeu.png" alt="Stephen Murichu's Logo" width="100" />
-</div>
+A powerful, modern, full-stack Sales & Inventory Management System built with Django, Bootstrap 5, AJAX, and MySQL.
+Designed for small and medium businesses to manage products, sales, purchases, invoices, staff, and customers through a clean and intuitive UI.
 
-# Django-inventory-management
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/license/mit)
-[![Python Version](https://img.shields.io/badge/Python-3.12-green)](https://www.python.org/downloads/)
+<div align="center"> <img src="https://res.cloudinary.com/murste/image/upload/v1698907632/stevolve_x8ioeu.png" width="120" /> </div>
+📌 Table of Contents
 
-## Table of Contents
-- [Django-inventory-management](#django-inventory-management)
-  - [Table of Contents](#table-of-contents)
-  - [Description](#description)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-    - [Clone the Repository](#clone-the-repository)
-    - [With Docker](#with-docker)
-    - [Without Docker](#without-docker)
-      - [On Linux](#on-linux)
-      - [On Windows](#on-windows)
-  - [Screenshots](#screenshots)
-  - [Authors](#authors)
+📌 Description
 
-## Description
-This Django application offers a solution for managing business operations with an emphasis on user experience and modern web technologies. It integrates Bootstrap for front-end design and employs Ajax for dynamic sales creation. The application features models for user profiles, vendors, customers, and transactions, including billing, invoicing, and inventory management.
+✨ Features
 
-## Prerequisites
-- **Python installed**: Ensure Python is installed on your system. You can download it from the official [Python website](https://www.python.org/).
-- **Understand Python and Django**: Basic understanding of Python programming and familiarity with Django web framework.
+🖼️ Screenshots
 
-## Installation
+🛠️ Tech Stack
 
-Follow these steps to install the necessary dependencies and set up the application:
+📦 Project Structure
 
-### Clone the Repository
+🚀 Installation Guide
 
-```bash
-git clone https://github.com/munuhee/sales-and-inventory-management.git
-cd sales-and-inventory-management
-```
+🔧 1. Clone Repository
 
-### With Docker
+🐳 2. Run With Docker (Recommended)
 
-1. **Build the Docker Image**
+💻 3. Run Without Docker
 
-    ```bash
-    docker build -t sales-and-inventory-management:1.0 .
-    ```
+🐬 MySQL Configuration
 
-2. **Run the Docker Container**
+📤 Deployment (Production)
 
-    ```bash
-    docker run -d -p 8000:8000 sales-and-inventory-management:1.0
-    ```
+👨‍💻 Author
 
-### Without Docker
+📄 License
 
-#### On Linux
+📌 Description
 
-1. **Set Up the Virtual Environment**
+StorePilot is a complete business management system featuring:
 
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
+✔ Inventory Management
+✔ Dynamic Sales Processing (using AJAX)
+✔ Vendor & Purchase Management
+✔ Customer & Staff Management
+✔ Billing and Invoice System
+✔ Real-time stock updates
+✔ Excel Export
+✔ Docker + MySQL Support
 
-2. **Install Dependencies**
+Perfect for retail, wholesale, warehouse, and SMB operations.
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+✨ Features
+🛒 Sales Management
 
-3. **Apply Migrations and Run the Server**
+AJAX-based item addition
 
-    ```bash
-    python manage.py migrate
-    python manage.py runserver
-    ```
+Auto tax, subtotal, grand total & change calculation
 
-#### On Windows
+Stock auto-deduct on sale
 
-1. **Set Up the Virtual Environment**
+Sale detail view
 
-    ```bash
-    python -m venv venv
-    venv\Scripts\activate
-    ```
+Export sales to Excel
 
-2. **Install Dependencies**
+📦 Inventory Management
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+Add/Update/Delete products
 
-3. **Apply Migrations and Run the Server**
+Auto stock adjustments
 
-    ```bash
-    python manage.py migrate
-    python manage.py runserver
-    ```
+Category-wise listing
 
-## Screenshots
+🚚 Purchases & Vendors
 
-<details>
-  <summary>Click to view screenshots</summary>
+Record purchases
 
-  ![Dashboard](Assets/dashboard.png)
+Auto-increase stock
 
-  ![Product](Assets/Product.png)
+Vendor list
 
-  ![Sales](Assets/Sales.png)
+Purchase detail page
 
-  ![Invoice](Assets/invoice.png)
+👥 Users
 
-  ![Print Invoice](Assets/print-invoice.png)
+Customer list
 
-  ![Staff Management](Assets/staff-manage.png)
+Staff management
+
+Django authentication system
+
+🧾 Invoices & Bills
+
+Generate invoices
+
+Printable invoice layout
+
+View bills
+
+🎨 UI & UX
+
+Bootstrap 5
+
+Modern gradient theme
+
+Smooth animations
+
+Responsive tables
+
+🧰 Misc
+
+OpenPyXL export
+
+Docker & Docker Compose support
+
+MySQL ready
+
+AJAX endpoints
+
+🖼️ Screenshots
+
+Place your screenshots inside /Assets/ folder.
+
+<details> <summary>Click to view screenshots</summary>
+
+
+
+
+
+
+
+
+
+
+
 
 </details>
+🛠️ Tech Stack
+Component	Technology
+Backend	Django 5, Python 3.11+
+Frontend	Bootstrap 5, HTML, JavaScript, AJAX
+Database	MySQL (Production), SQLite (Dev)
+Containerization	Docker, Docker-Compose
+Exporting	OpenPyXL
+Auth	Django Authentication
+📦 Project Structure
+sales-inventory-management/
+│── accounts/
+│── bills/
+│── invoice/
+│── static/
+│── store/
+│── transactions/
+│── StorePilot/           # Django settings
+│── Dockerfile
+│── docker-compose.yml
+│── requirements.txt
+│── README.md
+│── manage.py
+
+🚀 Installation Guide
+🔧 1. Clone Repository
+git clone https://github.com/<your-username>/sales-inventory-management.git
+cd sales-inventory-management
+
+🐳 2. Run With Docker (Recommended)
+Start MySQL + Django using Docker Compose:
+docker-compose up --build -d
+
+Apply migrations:
+docker exec -it storepilot-web python manage.py migrate
+
+Create admin user:
+docker exec -it storepilot-web python manage.py createsuperuser
 
 
-                                            Happy coding! 🚀
+Your app runs at:
+👉 http://127.0.0.1:8000
+
+💻 3. Run Without Docker
+Linux
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+
+Windows
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+
+🐬 MySQL Configuration
+
+Create a .env file:
+
+DB_NAME=storepilot
+DB_USER=root
+DB_PASSWORD=yourpassword
+DB_HOST=db
+DB_PORT=3306
+
+
+Update settings.py:
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'HOST': os.getenv("DB_HOST"),
+        'PORT': os.getenv("DB_PORT"),
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
+    }
+}
+
+📤 Deployment (Production)
+Supported Providers:
+
+Render
+
+Railway
+
+AWS / EC2
+
+DigitalOcean
+
+Docker VPS
+
+Build Production Image
+docker build -t storepilot:prod .
+
+Run with Gunicorn
+gunicorn StorePilot.wsgi:application --bind 0.0.0.0:8000
+
+Setup NGINX reverse proxy
+Enable HTTPS using Certbot
+👨‍💻 Author
+
+Aman Yadav
+📧 your email here
+🐙 GitHub: https://github.com/
+<your-username>
+
+📄 License
+
+This project is licensed under the MIT License — free to use, share, and modify.
+
+🎉 Thank You for Using StorePilot!
+
+For improvements, issues, or suggestions — feel free to open a PR or issue.
