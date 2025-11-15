@@ -23,6 +23,7 @@ Designed for small and medium businesses to manage products, sales, purchases, i
 📄 License
 
 📌 Description
+
 StorePilot is a complete business management system featuring:
 
 ✔ Inventory Management
