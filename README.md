@@ -47,6 +47,7 @@ Sale detail view
 Export sales to Excel
 
 📦 Inventory Management
+
 Add/Update/Delete products
 Auto stock adjustments
 Category-wise listing
@@ -61,10 +62,12 @@ Sales detail
 Customers detail
 
 👥 Users
+
 Customer list
 Staff management
 
 Django authentication system
+
 🧾 Invoices & Bills
 Generate invoices
 Printable invoice layout
@@ -109,6 +112,7 @@ Database	MySQL (Prod), SQLite (Dev)
 Containerization	Docker, Docker Compose
 Exporting	OpenPyXL
 Auth	Django Authentication
+
 📦 Project Structure
 StorePilot/
 │── accounts/
@@ -133,17 +137,12 @@ cd StorePilot
 🐳 2. Run With Docker (Recommended)
 
 Start MySQL + Django:
-
 docker-compose up --build -d
 
-
 Apply migrations:
-
 docker exec -it storepilot-web python manage.py migrate
 
-
 Create admin:
-
 docker exec -it storepilot-web python manage.py createsuperuser
 
 
@@ -197,19 +196,10 @@ DATABASES = {
 Supported Providers:
 
 Render
-
 Railway
-
 AWS / EC2
-
 DigitalOcean
-
 Docker VPS
-
-Build Production Image:
-
-docker build -t storepilot:prod .
-
 
 Run With Gunicorn:
 
