@@ -1,4 +1,4 @@
-🚀 StorePilot – Sales & Inventory Management System (Django + MySQL + Docker)
+StorePilot – Sales & Inventory Management System (Django + MySQL + Docker)
 
 A powerful, modern, full-stack Sales & Inventory Management System built with Django, Bootstrap 5, AJAX, and MySQL.
 Designed for small and medium businesses to manage products, sales, purchases, invoices, staff, and customers through a clean and intuitive UI.
@@ -20,13 +20,13 @@ Designed for small and medium businesses to manage products, sales, purchases, i
 
 🔧 1. Clone Repository
 
-🐳 2. Run With Docker (Recommended)
+🐳 2. Run With Docker
 
 💻 3. Run Without Docker
 
 🐬 MySQL Configuration
 
-📤 Deployment (Production)
+📤 Deployment
 
 👨‍💻 Author
 
@@ -120,36 +120,25 @@ Place your screenshots inside /Assets/ folder.
 
 <details> <summary>Click to view screenshots</summary>
 
-
-
-
-
-
-
-
-
-
-
-
 </details>
 🛠️ Tech Stack
 Component	Technology
-Backend	    Django 5, Python 3.11+
+Backend	Django 5, Python 3.11+
 Frontend	Bootstrap 5, HTML, JavaScript, AJAX
-Database	MySQL (Production), SQLite (Dev)
-Containerization	Docker, Docker-Compose
+Database	MySQL (Prod), SQLite (Dev)
+Containerization	Docker, Docker Compose
 Exporting	OpenPyXL
 Auth	Django Authentication
-
 📦 Project Structure
-sales-inventory-management/
+StorePilot/
 │── accounts/
 │── bills/
 │── invoice/
 │── static/
 │── store/
 │── transactions/
-│── StorePilot/           # Django settings
+│── StorePilot/              # Django settings
+│── Assets/                  # Screenshots & media files
 │── Dockerfile
 │── docker-compose.yml
 │── requirements.txt
@@ -158,17 +147,23 @@ sales-inventory-management/
 
 🚀 Installation Guide
 🔧 1. Clone Repository
-git clone https://github.com/<your-username>/sales-inventory-management.git
-cd sales-inventory-management
+git clone https://github.com/v4viki/StorePilot.git
+cd StorePilot
 
 🐳 2. Run With Docker (Recommended)
-Start MySQL + Django using Docker Compose:
+
+Start MySQL + Django:
+
 docker-compose up --build -d
 
+
 Apply migrations:
+
 docker exec -it storepilot-web python manage.py migrate
 
-Create admin user:
+
+Create admin:
+
 docker exec -it storepilot-web python manage.py createsuperuser
 
 
@@ -218,6 +213,7 @@ DATABASES = {
 }
 
 📤 Deployment (Production)
+
 Supported Providers:
 
 Render
@@ -230,12 +226,14 @@ DigitalOcean
 
 Docker VPS
 
-Build Production Image
+Build Production Image:
+
 docker build -t storepilot:prod .
 
-Run with Gunicorn
-gunicorn StorePilot.wsgi:application --bind 0.0.0.0:8000
 
+Run With Gunicorn:
+
+gunicorn StorePilot.wsgi:application --bind 0.0.0.0:8000
 
 📄 License
 
