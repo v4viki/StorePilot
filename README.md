@@ -48,18 +48,18 @@ Export sales to Excel
 
 📦 Inventory Management
 
-Add/Update/Delete products
-Auto stock adjustments
-Category-wise listing
+.Add/Update/Delete products
+.Auto stock adjustments
+.Category-wise listing
 
 🚚 Purchases & Vendors
 
-Record purchases
-Auto-increase stock
-Vendor list
-Purchase detail page
-Sales detail
-Customers detail
+.Record purchases
+.Auto-increase stock
+.Vendor list
+.Purchase detail page
+.Sales detail
+.Customers detail
 
 👥 Users
 
