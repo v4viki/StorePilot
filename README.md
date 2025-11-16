@@ -38,8 +38,8 @@ StorePilot is a complete business management system featuring:
 Perfect for retail, wholesale, warehouse, and SMB operations.
 
 ✨ Features
-🛒 Sales Management
 
+🛒 Sales Management
 AJAX-based item addition
 Auto tax, subtotal, grand total & change calculation
 Stock auto-deduct on sale
@@ -65,21 +65,23 @@ Customers detail
 
 Customer list
 Staff management
-
 Django authentication system
 
 🧾 Invoices & Bills
+
 Generate invoices
 Printable invoice layout
 View bills
 
 🎨 UI & UX
+
 Bootstrap 5
 Modern gradient theme
 Smooth animations
 Responsive tables
 
 🧰 Misc
+
 OpenPyXL export
 Docker & Docker Compose support
 MySQL ready
@@ -105,6 +107,7 @@ AJAX endpoints
 </details>
 
 🛠️ Tech Stack
+
 Component	Technology
 Backend	Django 5, Python 3.11+
 Frontend	Bootstrap 5, HTML, JavaScript, AJAX
@@ -114,6 +117,7 @@ Exporting	OpenPyXL
 Auth	Django Authentication
 
 📦 Project Structure
+
 StorePilot/
 │── accounts/
 │── bills/
