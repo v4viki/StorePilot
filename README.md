@@ -12,6 +12,7 @@ Designed for small and medium businesses to manage products, sales, purchases, i
 📦 Project Structure
 
 🚀 Installation Guide
+
 🔧 1. Clone Repository
 🐳 2. Run With Docker
 💻 3. Run Without Docker
