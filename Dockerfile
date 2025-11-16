@@ -10,10 +10,10 @@ WORKDIR /app
 
 # Install system packages + MySQL client
 RUN apt-get update && apt-get install -y \
-    gcc \
+    build-essential \
     default-libmysqlclient-dev \
-    pkg-config \
-    && rm -rf /var/lib/apt/lists/*
+    python3-dev
+
 
 # Install requirements
 COPY requirements.txt .
