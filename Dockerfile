@@ -8,24 +8,39 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# Install system packages + MySQL client
+# -----------------------
+# Install system packages + MySQL client libraries
+# -----------------------
 RUN apt-get update && apt-get install -y \
     build-essential \
     default-libmysqlclient-dev \
-    python3-dev
+    python3-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-
-# Install requirements
+# -----------------------
+# Install Python dependencies
+# -----------------------
 COPY requirements.txt .
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy project
+# -----------------------
+# Copy project files
+# -----------------------
 COPY . .
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
+# -----------------------
+# Static files collection (skip error exit on missing directory)
+# -----------------------
+RUN python manage.py collectstatic --noinput || true
 
+# -----------------------
+# Expose the port
+# -----------------------
 EXPOSE 8000
 
-# Start Gunicorn
+# -----------------------
+# Start with Gunicorn
+# -----------------------
 CMD ["gunicorn", "StorePilot.wsgi:application", "--bind", "0.0.0.0:8000"]
